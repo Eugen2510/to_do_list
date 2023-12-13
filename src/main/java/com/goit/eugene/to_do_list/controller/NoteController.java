@@ -26,11 +26,12 @@ public class NoteController {
     }
 
     @GetMapping("/list")
-    public ModelAndView getNotes() {
-        ModelAndView modelAndView = new ModelAndView("note/note_list");
-        modelAndView.addObject("notes", noteService
-                .listAllUsersNote(principalService.getUsername()));
-        return modelAndView;
+    public String getNotes(Model model) {
+        String username = principalService.getUsername();
+        model.addAttribute("notes", noteService
+                .listAllUsersNote(username));
+        model.addAttribute("user", userService.getUserById(username));
+        return "note/note_list";
     }
 
     @GetMapping("/create")
