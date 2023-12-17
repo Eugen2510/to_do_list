@@ -2,11 +2,8 @@ package com.goit.eugene.to_do_list.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +22,5 @@ public class Note {
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id", referencedColumnName = "username")
-    @Getter
-    @Setter
     private User user;
 }
